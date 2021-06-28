@@ -14,8 +14,8 @@ const Navbar = () => {
         <Navbarr.Toggle aria-controls="basic-navbar-nav" />
         <Navbarr.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-        <Nav.Link href="/">Infographics</Nav.Link>
-        <Nav.Link href="/aboutus">About Us</Nav.Link>
+        <Nav.Link className="navbarlinks" href="/">Infographics</Nav.Link>
+        <Nav.Link className="navbarlinks" href="/aboutus">About Us</Nav.Link>
             {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>

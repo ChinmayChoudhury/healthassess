@@ -1,10 +1,10 @@
 import React from 'react'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const Sidebar = () => {
     return (
         <div className="sidebar">
-            hell<br></br>
-            
+            <FontAwesomeIcon icon={["fab", "github"]} />
+            hello
         </div>
     )
 }
