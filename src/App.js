@@ -1,4 +1,6 @@
-import Dashboard from './Dashboard.js'
+import Dashboard from './Dashboard.js';
+
+
 function App() {
   return (
     <div className="container">
