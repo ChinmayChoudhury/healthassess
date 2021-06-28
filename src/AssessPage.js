@@ -6,12 +6,9 @@ import Sidebar from './components/Sidebar'
 const AssessPage = () => {
     return (
         <div>
-            <div className="navbar">
+            
             <Navbar />
-            </div>
-            <div className="sidebar">
             <Sidebar />
-            </div>
             <div>
                 Hello
   

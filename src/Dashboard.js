@@ -4,13 +4,11 @@ import Sidebar from './components/Sidebar'
 
 const Dashboard = () => {
     return (
-        <div>
+        <div className="parent-div">
             
             <Navbar />
-            
-            <div className="sidebar">
             <Sidebar />
-            </div>
+           
             <div className="topinfo">
                 hello1
             </div>
