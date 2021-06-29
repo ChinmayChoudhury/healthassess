@@ -18,10 +18,10 @@ const Dashboard = () => {
             <Sidebar />
            
             <div className="topinfo">
-            {<Topinfo /> }
+            <Topinfo /> 
             </div>
             <div className="graph">
-            {<Graphs />}
+            <Graphs />
             </div>
         </div>
     )
