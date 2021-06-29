@@ -27,36 +27,31 @@ const cityOptions = [
     return(
       <div>
         <h3>Please enter appropriate medical condition and location</h3>
-      <div className="inputs">
+          <div className="inputs">
+          
+          <span id = "disease">
+          <Dropdown
+            placeholder='Condition'
+            className='diseaseDrop'
+          //fluid
+            search
+            selection
+            options={countryOptions}
+          />
+          </span>
       
-      <span id = "disease">
-      <Dropdown
-      placeholder='Condition'
-      className='diseaseDrop'
-      //fluid
-      search
-      selection
-      options={countryOptions}
-    />
-    </span>
-      
-    <span id = "location">
-    <Dropdown
-    placeholder='Location'
-    
-    search
-    selection
-    options={cityOptions}
-    />
-    </span>
-    <span id="submit">
-    <button class="ui button" type="submit">Submit</button>
-    </span>
-    </div>
-    </div>
-
-
-    
+          <span id = "location">
+          <Dropdown
+            placeholder='Location'
+            search selection
+            options={cityOptions}
+          />
+          </span>
+          <span id="submit">
+            <button class="ui button pill" type="submit">Submit</button>
+          </span>
+          </div>
+      </div>
     )
 }
 
