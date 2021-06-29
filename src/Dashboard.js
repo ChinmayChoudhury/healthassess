@@ -12,13 +12,11 @@ import Popper from 'popper.js';
 
 const Dashboard = () => {
     return (
-        <div>
-            <div className="navbar">
+        <div className="parent-div">
+            
             <Navbar />
-            </div>
-            <div className="sidebar">
             <Sidebar />
-            </div>
+           
             <div className="topinfo">
             {<Topinfo /> }
             </div>

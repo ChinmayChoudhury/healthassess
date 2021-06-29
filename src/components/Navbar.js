@@ -1,4 +1,4 @@
-import React from 'react'
+// import React from 'react'
 
 import Navbarr from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
@@ -12,10 +12,10 @@ const Navbar = () => {
         // <text className="navbaritem" >Infographics</text>
         <Navbarr  className="navbarcust">
         <Navbarr.Brand className="navbarbrand" href="#home">Health Assess</Navbarr.Brand>
-        {/* <Navbarr.Toggle aria-controls="basic-navbar-nav" /> */}
+        <Navbarr.Toggle aria-controls="basic-navbar-nav" />
         <Navbarr.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-        <Nav.Link className="navbarlinks" href="/"><img src= "home11.png" height="15" width="15"></img>Home</Nav.Link>
+        <Nav.Link className="navbarlinks" href="/">Infographics</Nav.Link>
         <Nav.Link className="navbarlinks" href="/aboutus">About Us</Nav.Link>
             {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
