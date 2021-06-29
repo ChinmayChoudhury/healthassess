@@ -11,6 +11,8 @@
 # production
 /build
 
+/src/App.js
+
 # misc
 .DS_Store
 .env.local
@@ -24,3 +26,6 @@ yarn-error.log*
 
 #app.js till production
 src/App.js
+
+#package-lock json file
+./package-lock.json
