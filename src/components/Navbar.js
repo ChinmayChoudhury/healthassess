@@ -1,4 +1,5 @@
 // import React from 'react'
+
 import Navbarr from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
@@ -32,3 +33,21 @@ const Navbar = () => {
 
 
 export default Navbar
+
+// const Navbar = () => {
+//     return (
+//         <div>
+//         <text className="navbaritem" >INFOGRAPHICS</text>
+//         <span className="homelink">
+//         <a href="#" className="homelink"><img src= "homeimg.png" height="25" width="25"></img>Home</a>
+//         </span>
+//         <span>
+//         <a href="#" className="abtus">About us</a>
+//         </span>
+        
+//         </div>
+//     )
+// }
+
+
+// export default Navbar
