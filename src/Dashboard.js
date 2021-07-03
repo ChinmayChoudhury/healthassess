@@ -21,6 +21,8 @@ const Dashboard = () => {
             <Topinfo /> 
             </div>
             <div className="graph">
+            {/* <p>data from pyserver: {currtime} </p> */}
+
             <Graphs />
             </div>
         </div>
