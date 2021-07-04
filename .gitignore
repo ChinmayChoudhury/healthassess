@@ -12,7 +12,7 @@
 /build
 
 /src/App.js
-
+/py-server/__pycache__
 # misc
 .DS_Store
 .env.local
