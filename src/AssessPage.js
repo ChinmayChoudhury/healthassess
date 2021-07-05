@@ -21,10 +21,13 @@ export default class AssessPage extends React.Component {
             s2:0,
             s3:0,
             s4:0,
-            response:''
+            response:'nothing'
         };
         this.handleNameChange  = this.handleNameChange.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
+
+    // const [ress, setRess];
 
     // const [name,email,age,s1,s2,s3,s4,handlesubmit,sendrequest]=useState();
     // const [name,setName] = useState('');
@@ -73,6 +76,26 @@ export default class AssessPage extends React.Component {
             this.setState({response: data.disease})
         }))
     }
+
+    // componentDidMount(){
+    //     this.handleClick();
+    // }
+
+    handleClick= (event)=>{
+        console.log(this.state.name);
+        fetch('/assesshealth',
+            {
+                method:'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                  },
+                body: JSON.stringify(this.state)    
+            }
+        ).then(res=>res.json().then(data=>{
+            this.setState({response:data.name});
+        }))
+    }
+    
     
     render(){
 
@@ -141,14 +164,19 @@ export default class AssessPage extends React.Component {
                         </Form.Group>
                         <Form.Group as ={Row} className="btncustom">
                             <Col lg="12">
-                                <Button  type="submit" className="pill ">
+                                <Button  type="submit" className="pill " onClick={this.handleClick}>
                                     Submit
                                 </Button>
                             </Col>
                         </Form.Group>
                     </Form>
                     <p>{this.state.response}</p>
-                    
+                    <Button  type="submit" className="pill " onClick={this.handleClick}>
+                                    Submit
+                                </Button>
+
+                                <p>data from pyserver: {this.response} </p>
+
                 </div>
             </div>
             </div>
