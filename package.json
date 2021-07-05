@@ -50,5 +50,7 @@
   },
   "devDependencies": {
     "@types/bootstrap": "^5.0.16"
-  }
+  },
+  "proxy": "http://localhost:5000"
+
 }

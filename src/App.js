@@ -1,14 +1,19 @@
+import React from 'react'
 import Dashboard from './Dashboard.js'
 import AssessPage from './AssessPage.js'
-function App() {
-  return (
-    <div className="parent-div">
-        <Dashboard />
-        {/* <AssessPage /> */}
-    </div>
-  );
+export default class App extends React.Component {
+  
+  
+  render(){
+
+    return (
+      <div className="parent-div">
+          <AssessPage />
+          {/* <Dashboard /> */}
+      </div>
+    );
+  }
 }
 
 
 
-export default App;
