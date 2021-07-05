@@ -27,59 +27,80 @@ export default class AssessPage extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    // const [ress, setRess];
 
-    // const [name,email,age,s1,s2,s3,s4,handlesubmit,sendrequest]=useState();
-    // const [name,setName] = useState('');
-    // const [email, setEmail] = useState();
-    // const [age, setAge] = useState(0);
-    // const [s1,setS1] = useState(0);
-    // const [s2,setS2] = useState(0);
-    // const [s3,setS3] = useState(0);
-    // const [s4,setS4] = useState(0);
-    // const [] = useState();
 
     handleNameChange = (event)=>{
         this.setState({name: event.target.value});
-        // console.log(this.state.name);
-        // name = event.target.value
-        // setName(event.target.value);
-        // this.setState({name:})
+        
     }
     handleEmailChange = (event)=>{
         this.setState({email: event.target.value})
-        // setEmail(event.target.value)
     }
     handleAgeChange = (event)=>{
         this.setState({age: event.target.value})
-        // setAge(event.target.value)
     }
     handleS1Change = (event)=>{
         this.setState({s1: event.target.value})
-        // setS1(event.target.value)
     }
     handleS2Change = (event)=>{
         this.setState({s2: event.target.value})
-        // setS2(event.target.value)
     }
     handleS3Change = (event)=>{
         this.setState({s3: event.target.value})
-        // setS3(event.target.value)
     }
     handleS4Change = (event)=>{
         this.setState({s4: event.target.value})
-        // setS4(event.target.value)
     }
     handlesubmit = (event)=>{
-        // console.log("submit"+this.state.name)
-        fetch('/assesshealth').then(res=>res.json().then(data=>{
-            this.setState({response: data.disease})
-        }))
+        event.preventDefault();
+        // console.log(this.state.name);
+        var isvalid = true;
+        
+
+        // commented for debugging, uncomment in production
+        // if(this.state.name == ""){
+        //     alert("Name empty");
+        //     isvalid = false;
+        // }
+        // if(this.state.age == 0 || this.state.age == ""){
+        //     alert("invalid age");
+        //     isvalid = false;
+        // }
+        
+        // if(this.state.s1 == ""){
+        //     alert("Please provide all 5 symptoms");
+        //     isvalid = false;
+        // }
+        // if(this.state.s2 == ""){
+        //     alert("Please provide all 5 symptoms");
+        //     isvalid = false;
+        // }
+        // if(this.state.s3 == ""){
+        //     alert("Please provide all 5 symptoms");
+        //     isvalid = false;
+        // }
+        // if(this.state.s4 == ""){
+        //     alert("Please provide all 5 symptoms");
+        //     isvalid = false;
+        // }
+
+        if(isvalid===true){
+            fetch('/assesshealth',
+                {
+                    method:'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                      },
+                    body: JSON.stringify(this.state)    
+                }
+            ).then(res=>res.json().then(data=>{
+                this.setState({response:data.name});
+            }))
+        }
+        
     }
 
-    // componentDidMount(){
-    //     this.handleClick();
-    // }
+ 
 
     handleClick= (event)=>{
         console.log(this.state.name);
@@ -164,18 +185,15 @@ export default class AssessPage extends React.Component {
                         </Form.Group>
                         <Form.Group as ={Row} className="btncustom">
                             <Col lg="12">
-                                <Button  type="submit" className="pill " onClick={this.handleClick}>
+                                <Button  type="submit" className="pill " >
                                     Submit
                                 </Button>
+                                {/* onClick={this.handleClick} */}
                             </Col>
                         </Form.Group>
                     </Form>
                     <p>{this.state.response}</p>
-                    <Button  type="submit" className="pill " onClick={this.handleClick}>
-                                    Submit
-                                </Button>
-
-                                <p>data from pyserver: {this.response} </p>
+                    
 
                 </div>
             </div>
