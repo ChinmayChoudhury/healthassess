@@ -8,7 +8,7 @@ import FormControl from 'react-bootstrap/FormControl'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
-
+import {Dropdown} from 'semantic-ui-react'
 export default class AssessPage extends React.Component {
 
     constructor(){
@@ -24,10 +24,17 @@ export default class AssessPage extends React.Component {
             response:'nothing'
         };
         this.handleNameChange  = this.handleNameChange.bind(this);
-        this.handleClick = this.handleClick.bind(this);
+        // this.handleClick = this.handleClick.bind(this);
     }
 
-
+    sympOptions = [
+        {key: 'mum', value: 1, text: 'Mumbai'},
+        {key: 'bh', value: 2, text: 'Bhopal'},
+        {key: 'amh', value: 3, text: 'Ahmedabad'},
+        {key: 'nd', value: 4, text: 'New Dehli'},
+        {key: 'vr', value: 5, text: 'Varanasi'},
+        {key: 'ch', value: 5, text: 'Chennai'},
+      ]
 
     handleNameChange = (event)=>{
         this.setState({name: event.target.value});
@@ -39,17 +46,17 @@ export default class AssessPage extends React.Component {
     handleAgeChange = (event)=>{
         this.setState({age: event.target.value})
     }
-    handleS1Change = (event)=>{
-        this.setState({s1: event.target.value})
+    handleS1Change = (event, {value})=>{
+        this.setState({s1: value})
     }
-    handleS2Change = (event)=>{
-        this.setState({s2: event.target.value})
+    handleS2Change = (event, {value})=>{
+        this.setState({s2: value})
     }
-    handleS3Change = (event)=>{
-        this.setState({s3: event.target.value})
+    handleS3Change = (event, {value})=>{
+        this.setState({s3: value})
     }
-    handleS4Change = (event)=>{
-        this.setState({s4: event.target.value})
+    handleS4Change = (event, {value})=>{
+        this.setState({s4: value})
     }
     handlesubmit = (event)=>{
         event.preventDefault();
@@ -100,22 +107,11 @@ export default class AssessPage extends React.Component {
         
     }
 
- 
-
-    handleClick= (event)=>{
-        console.log(this.state.name);
-        fetch('/assesshealth',
-            {
-                method:'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                  },
-                body: JSON.stringify(this.state)    
-            }
-        ).then(res=>res.json().then(data=>{
-            this.setState({response:data.name});
-        }))
+    getS1Val = (event, {value})=>{
+        console.log(value);
+        this.setState({s1:value});
     }
+
     
     
     render(){
@@ -158,29 +154,55 @@ export default class AssessPage extends React.Component {
                         <Form.Group as={Row} controlId="symptom1">
                             <Form.Label column lg="3">Symptom #1:</Form.Label>
                             <Col lg="9">
-                                <FormControl type="text" className="pill" placeholder="Enter a symptom" value = {this.state.s1} onChange={this.handleS1Change} />
-                            
+                                {/* <FormControl type="text" className="pill" placeholder="Enter a symptom" value = {this.state.s1} onChange={this.handleS1Change} /> */}
+                                {/* <FormControl type="text" className="pill" placeholder="Enter a symptom" value = {this.state.s1} onChange={this.handleS1Change} /> */}
+                                <Dropdown
+                                    placeholder='Symptom'
+                                    search selection
+                                    options={this.sympOptions}
+                                    value = {this.state.s1}
+                                    onChange={this.handleS1Change}
+                                />
+                               
                             </Col>
                         </Form.Group>
                         <Form.Group as={Row} controlId="symptom2">
                             <Form.Label column lg="3">Symptom #2:</Form.Label>
                             <Col lg="9">
-                                <FormControl type="text" className="pill" placeholder="Enter a symptom" value={this.state.s2} onChange={this.handleS2Change}/>
-                            
+                                {/* <FormControl type="text" className="pill" placeholder="Enter a symptom" value={this.state.s2} onChange={this.handleS2Change}/> */}
+                                <Dropdown
+                                    placeholder='Symptom'
+                                    search selection
+                                    options={this.sympOptions}
+                                    value = {this.state.s2}
+                                    onChange={this.handleS2Change}
+                                />
                             </Col>
                         </Form.Group>
                         <Form.Group as={Row} controlId="symptom3">
                             <Form.Label column lg="3">Symptom #3:</Form.Label>
                             <Col lg="9">
-                                <FormControl type="text" className="pill" placeholder="Enter a symptom" value={this.state.s3} onChange={this.handleS3Change}/>
-                            
+                                {/* <FormControl type="text" className="pill" placeholder="Enter a symptom" value={this.state.s3} onChange={this.handleS3Change}/> */}
+                                <Dropdown
+                                    placeholder='Symptom'
+                                    search selection
+                                    options={this.sympOptions}
+                                    value = {this.state.s3}
+                                    onChange={this.handleS3Change}
+                                />
                             </Col>
                         </Form.Group>
                         <Form.Group as={Row} controlId="symptom4">
                             <Form.Label column lg="3">Symptom #4:</Form.Label>
                             <Col lg="9">
-                                <FormControl type="text" className="pill" placeholder="Enter a symptom" value={this.state.s4} onChange={this.handleS4Change}/>
-                            
+                                {/* <FormControl type="text" className="pill" placeholder="Enter a symptom" value={this.state.s4} onChange={this.handleS4Change}/> */}
+                                <Dropdown
+                                    placeholder='Symptom'
+                                    search selection
+                                    options={this.sympOptions}
+                                    value = {this.state.s4}
+                                    onChange={this.handleS4Change}
+                                />
                             </Col>
                         </Form.Group>
                         <Form.Group as ={Row} className="btncustom">

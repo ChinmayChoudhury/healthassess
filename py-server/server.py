@@ -2,7 +2,7 @@ import time
 import json
 from flask import Flask
 from flask import request
-
+import mytest
 app = Flask(__name__)
 
 @app.route('/time')
@@ -15,8 +15,10 @@ def find_disease():
     # jobj = json.dumps(s)
     # print(jobj)
     req = request.get_json()
-    print(req['name'])
-    return {"name":req['name']}
+    # res = mytest.fun()
+    print(req)
+    # print(res)
+    return {"name":req['s1']}
 
 if __name__ == "__main__":
     app.run()
