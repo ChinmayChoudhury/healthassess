@@ -9,6 +9,8 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import {Dropdown} from 'semantic-ui-react'
+import Symptoms from './components/symptoms.json'
+import Confetti from 'react-confetti'
 export default class AssessPage extends React.Component {
 
     constructor(){
@@ -17,24 +19,32 @@ export default class AssessPage extends React.Component {
             name: '',
             email:'',
             age:0,
-            s1:0,
-            s2:0,
-            s3:0,
-            s4:0,
-            response:'nothing'
+            s1:'',
+            s2:'',
+            s3:'',
+            s4:'',
+            s5:'',
+            response:'Please provide details to predict the disease',
+            predicted: false,
+            results:''
         };
         this.handleNameChange  = this.handleNameChange.bind(this);
         // this.handleClick = this.handleClick.bind(this);
     }
 
-    sympOptions = [
-        {key: 'mum', value: 1, text: 'Mumbai'},
-        {key: 'bh', value: 2, text: 'Bhopal'},
-        {key: 'amh', value: 3, text: 'Ahmedabad'},
-        {key: 'nd', value: 4, text: 'New Dehli'},
-        {key: 'vr', value: 5, text: 'Varanasi'},
-        {key: 'ch', value: 5, text: 'Chennai'},
-      ]
+
+    sympOptions = new Array();
+    componentWillMount(){
+        Object.keys(Symptoms).forEach((k)=>{
+            // let temp = 
+            // this.setState(prevstate =>(
+            //     {sympOptions:[...prevstate.sympOptions, {key:k, value:Symptoms[k][0],text:k}]}
+            // )
+            //     );
+            this.sympOptions.push({key:k, value:k, text: Symptoms[k][0]})
+        });
+        console.log(this.state.sympOptions)
+    }
 
     handleNameChange = (event)=>{
         this.setState({name: event.target.value});
@@ -58,6 +68,11 @@ export default class AssessPage extends React.Component {
     handleS4Change = (event, {value})=>{
         this.setState({s4: value})
     }
+
+    handleS5Change = (event, {value})=>{
+        this.setState({s5: value})
+    }
+
     handlesubmit = (event)=>{
         event.preventDefault();
         // console.log(this.state.name);
@@ -102,6 +117,7 @@ export default class AssessPage extends React.Component {
                 }
             ).then(res=>res.json().then(data=>{
                 this.setState({response:data.name});
+                this.setState({predicted:true});
             }))
         }
         
@@ -112,10 +128,18 @@ export default class AssessPage extends React.Component {
         this.setState({s1:value});
     }
 
+    componentDidMount(){
+        console.log(this.state.sympOptions)
+    }
     
-    
-    render(){
+    onConfettiDone(){
+        this.setState({confettirecycle: false});
+    }
 
+   
+
+    render(){
+       
         return (
             <div>
                 <Navbar />
@@ -205,6 +229,19 @@ export default class AssessPage extends React.Component {
                                 />
                             </Col>
                         </Form.Group>
+                        <Form.Group as={Row} controlId="symptom4">
+                            <Form.Label column lg="3">Symptom #5:</Form.Label>
+                            <Col lg="9">
+                                {/* <FormControl type="text" className="pill" placeholder="Enter a symptom" value={this.state.s4} onChange={this.handleS4Change}/> */}
+                                <Dropdown
+                                    placeholder='Symptom'
+                                    search selection
+                                    options={this.sympOptions}
+                                    value = {this.state.s5}
+                                    onChange={this.handleS5Change}
+                                />
+                            </Col>
+                        </Form.Group>
                         <Form.Group as ={Row} className="btncustom">
                             <Col lg="12">
                                 <Button  type="submit" className="pill " >
@@ -214,14 +251,23 @@ export default class AssessPage extends React.Component {
                             </Col>
                         </Form.Group>
                     </Form>
-                    <p>{this.state.response}</p>
                     
-
+                            
                 </div>
+                <div className="resultDiv">
+            <p className="divTitle">Your results: <span className="cheapMessage">{this.state.response}</span></p>  
+            {/* <Confetti
+                width = {window.width}
+                height = {window.height}
+                recycle = {false}
+                numberOfPieces = {700}
+                // tweenDuration = {2000}
+                />   */}
+        </div>
             </div>
             </div>
         )
     }
-}
 
+}
 // export default AssessPage

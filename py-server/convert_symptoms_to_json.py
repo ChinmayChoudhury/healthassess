@@ -14,9 +14,10 @@ symptoms are saved in the format: muscle_pain, lowercase words with underscore i
 So we replace underscore with space and capitalize() whole string to sentence case it.
 
 """
+d = {}
 for i in data:
     key = i[0]
-    i[0] = re.sub(r'_',' ',key).capitalize()
+    d[key] = [re.sub(r'_',' ',key).capitalize(), i[1]]
     # print(i)
 
 """
@@ -24,7 +25,7 @@ Saving the new modified array as json, this json will be used to map into dropdo
 s4,s5 (symptoms)
 
 """
-d = {i[0]:i[1] for i in data}
+# d = {i[0]:i[1] for i in data}
 with open('symptoms.json', 'w') as f:
     json.dump(d, f,indent=4)
 # print(d)
