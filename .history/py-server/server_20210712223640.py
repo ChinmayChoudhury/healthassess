@@ -17,7 +17,7 @@ def get_database():
     import pymongo
 
     # CONNECTION_STRING = "mongodb+srv://assess:D8hsxxi53UjxmyYl@cluster0.jlqix.mongodb.net/health_assess?retryWrites=true&w=majority"
-    CONNECTION_STRING = os.environ.get('MONGOUSER')
+    CONNECTION_STRING = os.environ['MONGOUSER']
     # Create a connection using MongoClient.
     client = MongoClient(CONNECTION_STRING)
 
@@ -29,7 +29,6 @@ if __name__ == "__main__":
     dbname = get_database()    
 
 col_name = dbname['asses1']
-print("hello")
 
 
 def new_collection():
