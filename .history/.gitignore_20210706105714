@@ -14,7 +14,6 @@
 /src/App.js
 /py-server/__pycache__
 # misc
-.env
 .DS_Store
 .env.local
 .env.development.local
