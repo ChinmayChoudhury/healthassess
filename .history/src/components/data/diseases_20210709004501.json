@@ -1,0 +1,20 @@
+{
+    "entries": [
+    {    
+    "name":"Hooliday",
+    "disease":"Cancer",
+    "city":"Mumbai",
+    "latitude":19.0790,
+    "longitude":72.8777
+    },
+    {
+        "name":"Johny",
+        "disease":"Typhoid",
+        "city":"Mumbai",
+        "latitude":13.0827,
+        "longitude":80.2707 
+    }
+]
+
+
+}
