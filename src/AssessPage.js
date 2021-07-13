@@ -32,7 +32,6 @@ export default class AssessPage extends React.Component {
         // this.handleClick = this.handleClick.bind(this);
     }
 
-
     sympOptions = new Array();
     componentWillMount(){
         Object.keys(Symptoms).forEach((k)=>{
@@ -45,6 +44,7 @@ export default class AssessPage extends React.Component {
         });
         console.log(this.state.sympOptions)
     }
+
 
     handleNameChange = (event)=>{
         this.setState({name: event.target.value});
@@ -122,6 +122,7 @@ export default class AssessPage extends React.Component {
         }
         
     }
+
 
     getS1Val = (event, {value})=>{
         console.log(value);
