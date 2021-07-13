@@ -4,11 +4,16 @@ import pandas
 from bson import json_util
 from flask import Flask
 from flask import request
+
 import json
 import os
 
 from pymongo.client_options import _parse_ssl_options
 
+
+
+import DiseasePrediction
+# import mytest
 
 app = Flask(__name__)
 
@@ -164,9 +169,12 @@ def find_disease():
     s = {"disease":"diarhaaaah"}
     # jobj = json.dumps(s)
     # print(jobj)
-    req = request.get_json()
-    print(req['name'])
-    return {"name":req['name']}
+    req = dict(request.get_json())
+    res = DiseasePrediction.SVM(req['s1'],req['s2'],req['s3'],req['s4'], req['s5'])
+    # print(req)
+    # print(res)
+    print("response",res)
+    return {"name":res}
 
 @app.route('/infographics') 
 def disease_data(): 
