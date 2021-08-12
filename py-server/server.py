@@ -171,10 +171,92 @@ def find_disease():
     # print(jobj)
     req = dict(request.get_json())
     res = DiseasePrediction.SVM(req['s1'],req['s2'],req['s3'],req['s4'], req['s5'])
-    # print(req)
+    print(req)
     # print(res)
     print("response",res)
+    new_entry = {
+    "name": req['name'],
+    "location": req['location'],
+    "cond": res,
+    }
+
+    main_col = dbname['asses1']
+    other_col = dbname['city_data']
+
+    loc_names = []
+    main_col.insert_one(new_entry)
+
+    for x in other_col.find():
+        loc_names.append(x["location"])
+
+    p = new_entry["location"]
+    cond = new_entry["cond"]
+
+    if p not in loc_names:
+        if (p=="Mumbai"):
+            other_col.insert_one({
+            "location": p,
+            "cancer_count": 0,
+            "typhoid_count": 0,
+            "lat": 19.076,
+            "long": 72.8777
+            })
+
+        elif (p=="Chennai"):
+            other_col.insert_one({
+            "location": p,
+            "cancer_count": 0,
+            "typhoid_count": 0,
+            "lat": 13.0827,
+            "long": 80.2707
+            })
+
+        elif(p=="Kolkata"):
+            other_col.insert_one({
+            "location": p,
+            "cancer_count": 0,
+            "typhoid_count": 0,
+            "lat": 22.5726,
+            "long": 88.3639
+            })
+
+        elif(p=="New Dehli"):
+            other_col.insert_one({
+            "location": p,
+            "cancer_count": 0,
+            "typhoid_count": 0,
+            "lat": 28.6139,
+            "long": 77.2090
+            })  
+
+    for i in other_col.find():
+        if i["location"]==p:
+            if cond == "Hepatitis C":
+
+                count = int(i["cancer_count"])
+                count = count+1
+                other_col.find_one_and_update({"location": p},{"$set": {"cancer_count": count}})
+                # loc_count = other_col.find_one({"location": x})
+                # og_count = int(loc_count["cancer_count"])+1
+
+                # other_col.find_one_and_update({"location": x},{"$set": {"cancer_count": og_count}})
+                print("updated_canc")
+            if cond == "typhoid":
+
+                count = int(i["typhoid_count"])
+                count = count+1
+                other_col.find_one_and_update({"location": p},{"$set": {"typhoid_count": count}})
+                # loc_count = other_col.find_one({"location" : x})
+                # og_count = int(loc_count["typhoid_count"])+1
+
+                # other_col.find_one_and_update({"location": x}, {"$set": {"typhoid_count": og_count}})
+                print("updated_typ")
     return {"name":res}
+
+
+
+
+
 
 @app.route('/infographics') 
 def disease_data(): 
@@ -277,7 +359,7 @@ def pieData():
 # cond = new_entry["cond"]
 
 # if p not in loc_names:
-#         if (p=="Mumbai"):
+#       if (p=="Mumbai"):
 #             other_col.insert_one({
 #             "location": p,
 #             "cancer_count": 0,
@@ -285,7 +367,7 @@ def pieData():
 #             "lat": 19.076,
 #             "long": 72.8777
 #             })
-        
+
 #         elif (p=="Chennai"):
 #             other_col.insert_one({
 #             "location": p,
@@ -324,7 +406,7 @@ def pieData():
 
 #                 # loc_count = other_col.find_one({"location": x})
 #                 # og_count = int(loc_count["cancer_count"])+1
-                
+
 #                 # other_col.find_one_and_update({"location": x},{"$set": {"cancer_count": og_count}})
 #                 print("updated_canc")
 
@@ -335,7 +417,7 @@ def pieData():
 #                 other_col.find_one_and_update({"location": p},{"$set": {"typhoid_count": count}})
 #                 # loc_count = other_col.find_one({"location" : x})
 #                 # og_count = int(loc_count["typhoid_count"])+1
-                
+
 #                 # other_col.find_one_and_update({"location": x}, {"$set": {"typhoid_count": og_count}})
 #                 print("updated_typ")
 

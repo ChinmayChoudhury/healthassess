@@ -2,7 +2,6 @@
 import React, { useRef, useEffect, useState } from 'react'
 //import mapboxgl from '!mapbox-gl'; 
 import ReactMapGl, {Marker, Popup} from 'react-map-gl';
-import * as diseaseData from "./data/diseases.json"
 require('dotenv').config()
  
 //mapboxgl.accessToken = 'pk.eyJ1IjoiZWVzaGFuIiwiYSI6ImNrcW1ieHIwczByaHIydm40eDh1cDkxNW0ifQ.aGH-JdFQkurqL5regIdKlg';

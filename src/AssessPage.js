@@ -25,6 +25,7 @@ export default class AssessPage extends React.Component {
             s4:'',
             s5:'',
             response:'Please provide details to predict the disease',
+            location:'',
             predicted: false,
             results:''
         };
@@ -50,6 +51,12 @@ export default class AssessPage extends React.Component {
         this.setState({name: event.target.value});
         
     }
+    handleLocChange = (event)=>{
+        this.setState({location: event.target.value});
+        
+    }
+
+
     handleEmailChange = (event)=>{
         this.setState({email: event.target.value})
     }
@@ -162,6 +169,16 @@ export default class AssessPage extends React.Component {
                                 We'll never share your email with anyone else.
                             </Form.Text> */}
                         </Form.Group>
+                        <Form.Group as={Row} controlId="loc">
+                            <Form.Label column lg="3">Location:</Form.Label>
+                            <Col lg="9">
+                                <FormControl type="text" className="pill" placeholder="Enter location" value ={this.state.location} onChange={this.handleLocChange} />
+    
+                            </Col>
+                            {/* <Form.Text className="text-muted">
+                                We'll never share your email with anyone else.
+                            </Form.Text> */}
+                        </Form.Group>
                         <Form.Group as={Row} controlId="email">
                             <Form.Label column lg="3">Email address:</Form.Label>
                             <Col lg="9">
@@ -176,6 +193,7 @@ export default class AssessPage extends React.Component {
                             
                             </Col>
                         </Form.Group>
+                        
                         <Form.Group as={Row} controlId="symptom1">
                             <Form.Label column lg="3">Symptom #1:</Form.Label>
                             <Col lg="9">
